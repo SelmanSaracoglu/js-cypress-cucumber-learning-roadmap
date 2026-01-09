@@ -1,68 +1,109 @@
+// Step 11 - Callback and Async Intro
+// Goal: Understand the difference between synchronous code,
+//       callback functions, and asynchronous operations.
 
-// 11 - Callbacks and async intro
-// This file explains why JavaScript sometimes does NOT run code top-to-bottom in a simple way,
-// and how callbacks are used to control "what happens after what".
+// --------------------------------------------------------------
+// 1) Synchronous JavaScript
+// --------------------------------------------------------------
+// These lines run one by one in order - no waiting, no delay.
+console.log("=== 1) Synchronous example ===");
 
-// Normal (synchronous) execution
-console.log("Sync 1: start");
-console.log("Sync 2: middle");
-console.log("Sync 3: end");
-
-// Async example with setTimeout
-console.log("Async example: start");
-
-setTimeout(() => {
-  console.log("Async example: inside setTimeout (runs later)");
-}, 1000);
-
-console.log("Async example: after setTimeout call");
-
-// The expected console order:
-// 1) Sync 1: start
-// 2) Sync 2: middle
-// 3) Sync 3: end
-// 4) Async example: start
-// 5) Async example: after setTimeout call
-// 6) Async example: inside setTimeout (runs later)
+console.log("Step 1: Preparing test plan");
+console.log("Step 2: Writing test case");
+console.log("Step 3: Executing test");
 
 
-// Callback function example
-function doTask(taskName, callback) {
-  console.log(`Starting task: ${taskName}`);
-  // Simulate some async work with setTimeout
-  setTimeout(() => {
-    console.log(`Finished task: ${taskName}`);
-    // after finishing, call the callback
-    callback();
-  }, 500);
+// --------------------------------------------------------------
+// 2) Callback Function (NOT async yet)
+// --------------------------------------------------------------
+// A callback is a function passed as an argument to another function.
+// It is executed ONLY when the main function decides to call it.
+
+// This function will be used as a callback
+function sayHello(name) {
+  console.log("Hello " + name);
 }
 
-function afterTask() {
-  console.log("Running callback: afterTask");
+// This function accepts a callback as a parameter
+function processUser(name, callback) {
+  console.log("Processing user: " + name);
+
+  // This is the moment the callback is executed
+  // callback = sayHello, so callback(name) means sayHello(name)
+  callback(name);
+
+  console.log("Finished processing user: " + name);
 }
 
-doTask("Download data", afterTask);
+// Pass the function WITHOUT parentheses
+// processUser calls it later
+console.log("\n=== 2) What is a callback? ===");
+processUser("Selman", sayHello);
 
-// Inline callback version
-doTask("Process data", () => {
-  console.log("Running inline callback after processing");
-});
 
-// Mini exercise style example: "login" flow simulation
-function fakeLogin(username, callback) {
-  console.log(`Logging in user: ${username}`);
+// --------------------------------------------------------------
+// 3) Asynchronous callback (setTimeout)
+// --------------------------------------------------------------
+// setTimeout does NOT stop JavaScript.
+// It schedules a function to run later, while the rest keeps going.
 
-  setTimeout(() => {
-    const success = true;
-    console.log(`Login finished for ${username}, success: ${success}`);
-    callback(success);
-  }, 700);
+console.log("\n=== 3) Async + callback (setTimeout) ===");
+
+console.log("1) Test started");
+
+// After 2 seconds, the callback runs
+setTimeout(function () {
+  console.log("2) Server response received (after 2 seconds)");
+}, 2000);
+
+console.log("3) Writing log information");
+// The "3)" log runs BEFORE the timeout callback
+
+
+// --------------------------------------------------------------
+// 4) Fake API simulation using callbacks
+// --------------------------------------------------------------
+// In real testing, APIs take time to respond.
+// We simulate that delay using setTimeout.
+// When the API "responds", we call the callback function.
+
+console.log("\n=== 4) QA scenario: Fake API call + callback ===");
+
+// Fake API request function
+function fakeApiCall(endpoint, callback) {
+  console.log("[" + endpoint + "] request sent...");
+
+  setTimeout(function () {
+    const fakeResponse = {
+      status: 200,
+      data: { message: "OK", endpoint: endpoint }
+    };
+
+    // Processing API response happens here
+    callback(fakeResponse);
+  }, 1500);
 }
 
-fakeLogin("testUser", (success) => {
-  if (success) {
-    console.log("Redirecting to dashboard...");
-  } else {
-    console.log("Showing error message...");
-  }
-});
+// Callback to handle the fake API response
+function handleApiResponse(response) {
+  console.log("Response received. Status:", response.status);
+  console.log("Message:", response.data.message);
+  console.log("Endpoint:", response.data.endpoint);
+}
+
+// Run the fake API call
+fakeApiCall("/login", handleApiResponse);
+
+
+// --------------------------------------------------------------
+// 5) Mini challenge (your turn)
+// --------------------------------------------------------------
+// TODO for you:
+// - Call fakeApiCall with another endpoint (ex: "/users")
+// - Write a new callback OR use an anonymous function
+
+console.log("\n=== 5) Mini challenge ===");
+// Example starter:
+// fakeApiCall("/users", function (response) {
+//   console.log("Users API response:", response);
+// });
