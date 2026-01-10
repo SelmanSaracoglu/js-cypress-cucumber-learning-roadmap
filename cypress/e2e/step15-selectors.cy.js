@@ -13,24 +13,16 @@ describe('Selectors Practice', () => {
 
     // find by class name
     cy.get('.home-list').should('be.visible');
+    cy.get('.container').should('be.visible')
 
     // find by text directly
     cy.contains('Utilities').should('be.visible');
 
     // combine get + contains
     cy.get('.dropdown-menu').contains('Cypress.Screenshot').should('exist');
+
+    cy.get('#query-btn').should('exist')
+
   });
-
-// TODO: Add 3 more selectors from example list:
-// - Select by ID
-// - Select by attribute
-// - Assert that button contains text
-//
-// Example ideas:
-//
-// cy.get('#dropdown-menu').should('exist')
-// cy.get('[href="/commands/querying"]').click()
-// cy.contains('Commands').should('be.visible')
-
 
 });
