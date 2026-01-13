@@ -18,12 +18,12 @@ fruits.push("grape");
 console.log(fruits);
 
 // includes (check existence)
-console.log(fruits.includes("banane"));
+console.log(fruits.includes("banana"));
 console.log(fruits.includes("pear"));
 
 // Iterate over array (for loop)
 for( let i = 0; i < fruits.length; i++) {
-    console.log("Fruit ${i}: ${fruits[i]}");
+    console.log(`Fruit ${i}: ${fruits[i]}`);
 }
 
 // Mini exercise outputs

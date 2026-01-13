@@ -17,13 +17,13 @@ console.log(users[1].role);
 
 // Loop through list
 for ( let i = 0; i < users.length; i++) {
-    console.log('${users[i].name} is a ${users[i].role}');
+    console.log(`${users[i].name} is a ${users[i].role}`);
 }
 
 // Filter active users (manual loop)
 for( let i = 0; i < users.length; i++) {
     if(users[i].active) {
-        console.log('${users[i].name} is active');
+        console.log(`${users[i].name} is active`);
     }
 }
 

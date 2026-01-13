@@ -38,7 +38,8 @@ const pageName = "Login";
 const statusCode = 200;
 
 console.log(`Navigating to ${pageName} page`);
-console.log('Login finished with status code: ${statusCode}');
+console.log(`Login finished with status code: ${statusCode}`);
+
 
 // Mini exercise outputs
 const email = "test@test.com";

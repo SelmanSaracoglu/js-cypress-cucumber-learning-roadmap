@@ -18,6 +18,10 @@ console.log(true);
 console.log("This line runs");
 
 // Mini exercise examples
-console.log("Selman");
-console.log(31);
+let name = "Selman";
+console.log("Name:", name);
+let age = 31;
+console.log("Age:", age);
+console.log("Age next year:", age + 1);
+
 console.log("I live in Germany.");

@@ -51,4 +51,3 @@ loginCount = loginCount + 1;
 
 console.log(email);
 console.log(loginCount);
-

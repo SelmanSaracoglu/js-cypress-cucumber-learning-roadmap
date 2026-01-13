@@ -5,7 +5,7 @@
 
 
 function greet(name) {
-    console.log('Hello ${name}');
+    console.log(`Hello ${name}`);
 }
 
 greet("Selman");
@@ -32,8 +32,8 @@ console.log(isAdult(15));
 
 // Default parameters
 function login(username, password = "123456") {
-    console.log('Username: ${username}');
-    console.log('Password: ${password}');
+    console.log(`Username: ${username}`);
+    console.log(`Password: ${password}`);
 }
 login("test user");
 login("adminUser", "adminPass");
