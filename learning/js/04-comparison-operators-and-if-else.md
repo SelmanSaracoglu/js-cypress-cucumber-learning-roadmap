@@ -1,6 +1,7 @@
 ## Comparison operators
 
-JavaScript compares values using equality/inequality and relational operators. In testing, comparisons drive branching logic (e.g., handling status codes, conditional UI states).
+JavaScript compares values using equality/inequality and relational operators. 
+In testing, comparisons drive branching logic (e.g., handling status codes, conditional UI states).
 
 ## == vs === (important)
 
