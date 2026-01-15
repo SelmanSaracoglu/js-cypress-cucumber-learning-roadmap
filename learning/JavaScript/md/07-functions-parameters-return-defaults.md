@@ -1,6 +1,8 @@
 ## Functions: parameters, return values, default parameters
 
-Functions help you reuse logic and keep code readable. In QA automation, functions are used to build test data, validate responses, format logs, and avoid repeating the same steps.
+Functions help you reuse logic and keep code readable. 
+In QA automation, functions are used to build test data, validate responses, format logs, 
+and avoid repeating the same steps.
 
 ## Function with parameters
 

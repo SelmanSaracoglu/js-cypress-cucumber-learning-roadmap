@@ -9,8 +9,11 @@ describe("DemoWebShop - User Actions", () => {
   // 1) Visit "/"
   // 2) Type "computer" into input[name="q"]
   // 3) Assert input value is "computer"
-  // Expected output:
-  // - value is: computer
+  it("type() into search field + assert value", () => {
+    cy.visit("/");
+    cy.get("#small-searchterms").type("computer").should('have.value', 'computer');
+    cy.log("value is: computer")
+  });
 
   // Exercise 2: click() Search + assert URL includes /search
   // TODO:
@@ -18,16 +21,34 @@ describe("DemoWebShop - User Actions", () => {
   // 2) Type "computer" into input[name="q"]
   // 3) Click search button: input[value="Search"]
   // 4) Assert URL includes "/search"
-  // Expected output:
-  // - URL includes: /search
+  it("click() Search + assert URL includes /search", () => {
+    cy.visit("/");
+    cy.get("#small-searchterms")
+    .type("computer")
+    .should("have.value", "computer");
+
+    cy.get('input[value="Search"]').click();
+
+    cy.url().should('include', '/search')
+    cy.log("URL includes: /search"); // - URL includes: /search
+  });
+ 
+  
 
   // Exercise 3: click() navigation link using contains()
   // TODO:
   // 1) Visit "/"
   // 2) Click "Log in" using cy.contains()
   // 3) Assert URL includes "/login"
-  // Expected output:
-  // - URL includes: /login
+  it("click() navigation link using contains()", () => {
+    cy.visit("/");
+    cy.contains('a', 'Log in').click();
+
+    cy.url().should('include', '/login')
+    cy.log("URL includes: /login"); // - URL includes: /login
+    cy.url().then((url) => console.log('URL is:', url));
+  });
+ 
 
   // Exercise 4: type() into login fields (clear + type) + assert values
   // TODO:
@@ -36,9 +57,24 @@ describe("DemoWebShop - User Actions", () => {
   // 3) Type a password into #Password (use clear().type(...))
   // 4) Assert #Email has the email value
   // 5) Assert #Password has the password value
-  // Expected output:
-  // - Email input has your email
-  // - Password input has your password
+  it("type() into login fields (clear + type) + assert values", () => {
+    cy.visit("/login");
+
+    cy.get("#Email")
+    .clear()
+    .type("email@email.com")
+    .should("have.value", "email@email.com");
+
+    cy.log("Email input has your email");
+
+    cy.get("#Password")
+    .clear()
+    .type("Test1234!")
+    .should("have.value", "Test1234!");
+
+    cy.log("Password input has your password");
+  });
+
 
   // Exercise 5: click() Log in button (do NOT assert success yet)
   // TODO:
@@ -48,8 +84,23 @@ describe("DemoWebShop - User Actions", () => {
   //    Pick ONE stable check:
   //    - URL includes "/login" (if invalid)
   //    - OR error message exists (if invalid)
-  // Expected output:
-  // - You see a stable result after click (URL or error exists)
+  it("click() Log in button (do NOT assert success yet)", () => {
+    cy.visit("/login");
+
+    cy.get('input[value="Log in"]').click();
+
+    cy.url().should("include", "/login");
+
+    cy.log("URL includes: /login");
+
+    cy.get(".validation-summary-errors")
+    .should("exist")
+    .and("be.visible");
+
+    cy.log("Error message exists");
+
+  });
+
 
   // Exercise 6: check() checkbox (Register page - Newsletter)
   // NOTE: DemoWebShop register page includes checkbox "Newsletter" in many installs.
