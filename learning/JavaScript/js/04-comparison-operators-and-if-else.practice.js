@@ -1,30 +1,32 @@
 
 // 04 - Comparison operators and if / else (Practice)
-// TODO-only exercises. Do NOT include solutions.
-// Use const by default; use let only when reassignment is required.
 
 // Exercise 1: == vs ===
 // TODO: Create const a = 5 and const b = "5".
 // TODO: Log the results with labels exactly:
 // "a == b:" and the result
 // "a === b:" and the result
-// Expected output:
-// a == b: true
-// a === b: false
+const a = 5;
+const b = "5";
+console.log("a == b:", a == b);     // a == b: true
+console.log("a === b:", a === b);   // a === b: false
 
 // Exercise 2: != vs !==
 // TODO: Using the same a and b, log with labels exactly:
 // "a != b:" and the result
 // "a !== b:" and the result
-// Expected output:
-// a != b: false
-// a !== b: true
+console.log("a != b:", a != b);     // a == b: true
+console.log("a !== b:", a !== b);   // a === b: false
 
 // Exercise 3: Simple pass/fail
 // TODO: Create const score = 75.
 // TODO: If score > 60 log "Test Passed" else log "Test Failed".
-// Expected output:
-// Test Passed
+const score = 75;
+if(score > 60 ) {
+    console.log("Test Passed"); // Test Passed
+} else {
+    console.log("Test Failed");
+}
 
 // Exercise 4: Multiple branches (status code)
 // TODO: Create const statusCode = 401.
@@ -32,20 +34,35 @@
 // - 200 => "Request successful"
 // - 401 => "Unauthorized"
 // - anything else => "Unexpected status code"
-// Expected output:
-// Unauthorized
+const statusCode = 401
+if( statusCode === 200) {
+    console.log("Request successful");
+} else if (statusCode === 401) {
+    console.log("Unauthorized");    // Unauthorized
+} else {
+    console.log("Unexpected status code");
+}
 
 // Exercise 5: Boolean condition (easy)
 // TODO: Create const isLoggedIn = false.
 // TODO: If isLoggedIn log "User is logged in" else log "User is not logged in".
-// Expected output:
-// User is not logged in
+const isLoggedIn = false;
+if (isLoggedIn) {
+    console.log("User is logged in");
+} else {
+    console.log("User is not logged in") // User is not logged in
+
+}
 
 // Exercise 6: Empty cart check (easy)
 // TODO: Create const cartItems = 0.
 // TODO: If cartItems === 0 log "Cart is empty" else log "Cart has items".
-// Expected output:
-// Cart is empty
+const cartItems = 0
+if (cartItems === 0) {
+    console.log("Cart is empty");
+} else {
+    console.log("Cart has items"); // Cart is empty
+}
 
 // Exercise 7: Strict checks for UI text (harder)
 // TODO:
@@ -54,9 +71,9 @@
 //    "strict compare:" <result>
 // 3) Compare it to number 0 using == and log:
 //    "loose compare:" <result>
-// Expected output:
-// strict compare: false
-// loose compare: true
+const uiCartCountText = "0";
+console.log("strict compare:", uiCartCountText === 0);  // strict compare: false
+console.log("loose compare:", uiCartCountText == 0);    // loose compare: true
 
 // Exercise 8: Range classification (harder)
 // TODO:
@@ -65,8 +82,16 @@
 //    - <= 300 => "FAST"
 //    - <= 800 => "OK"
 //    - > 800  => "SLOW"
-// Expected output:
-// SLOW
+
+const responseTimeMs = 850
+if (responseTimeMs <= 300) {
+    console.log("FAST");
+} else if (responseTimeMs >= 300 && responseTimeMs <= 800) {
+    console.log("OK");
+} else if (responseTimeMs > 800 ) {
+    console.log("SLOW"); // SLOW
+}
+
 
 // Mini QA scenario: Handle login API result
 // TODO:
